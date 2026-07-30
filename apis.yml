@@ -1,7 +1,31 @@
 aid: leapyear
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/leapyear.png
 name: LeapYear
-description: LeapYear is a company surfaced as a portfolio company of bloomberg-beta and added to the
-  API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: 'LeapYear Technologies built an enterprise platform for differentially
+  private analytics and machine learning, letting organizations run statistics, SQL-style
+  queries, feature engineering, and supervised and unsupervised model training against
+  their most sensitive data while a mathematically provable privacy guarantee bounds
+  what any single record can leak. The product shipped as a self-hosted server, LeapYear
+  Core, driven by a first-party Python client library that exposes databases, tables,
+  views, users, groups, permissions, privacy profiles, and per-database privacy budgets
+  as programmable resources. Snowflake announced its intent to acquire LeapYear in
+  February 2023 and closed the acquisition for $62.0 million in cash, folding the
+  differential privacy technology and team into the Snowflake Data Cloud clean-room
+  capabilities. The standalone company surface is now retired: leapyear.io no longer
+  answers on HTTPS. The surviving public developer surface is the hosted LeapYear
+  Python client reference for version 4.1.1.'
 url: https://raw.githubusercontent.com/api-evangelist/leapyear/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -9,14 +33,81 @@ x-backed-by:
 - bloomberg-beta
 x-tier: stub
 x-tier-reason: portfolio-lead
+x-status: acquired
+x-acquired-by: snowflake
+x-acquired-date: '2023-02-10'
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
-apis: []
+- Data Privacy
+- Differential Privacy
+- Machine Learning
+- Analytics
+- Data Clean Rooms
+- Privacy Enhancing Technologies
+- Python
+- Acquired
+apis:
+- aid: leapyear-python-client
+  name: LeapYear Python Client
+  description: 'The first-party Python client library for LeapYear Core. The Client
+    class opens an authenticated connection to a self-hosted LeapYear server and exposes
+    administrative resources (databases, tables, column definitions, views, users,
+    groups, permissions, privacy profiles) alongside the DataSet query builder, the
+    analytics and model modules for differentially private statistics and machine
+    learning, feature transformers, and an async jobs interface. There is no public
+    multi-tenant endpoint: every deployment runs its own LeapYear Core server, so
+    the client is pointed at a customer-operated host via the url argument or the
+    LY_API_URL environment variable.'
+  humanURL: https://leapyear-python-docs.readthedocs-hosted.com/en/4.1.1/
+  tags:
+  - Differential Privacy
+  - Machine Learning
+  - Analytics
+  - Python
+  properties:
+  - type: Documentation
+    url: https://leapyear-python-docs.readthedocs-hosted.com/en/4.1.1/
+  - type: APIReference
+    url: https://leapyear-python-docs.readthedocs-hosted.com/en/4.1.1/api.html
+  - type: GettingStarted
+    url: https://leapyear-python-docs.readthedocs-hosted.com/en/4.1.1/tutorial.html
+common:
+- type: Documentation
+  url: https://leapyear-python-docs.readthedocs-hosted.com/en/4.1.1/
+- type: APIReference
+  url: https://leapyear-python-docs.readthedocs-hosted.com/en/4.1.1/api.html
+- type: GettingStarted
+  url: https://leapyear-python-docs.readthedocs-hosted.com/en/4.1.1/tutorial.html
+- type: Authentication
+  url: authentication/leapyear-authentication.yml
+- type: Packages
+  url: packages/leapyear-packages.yml
+- type: SDKs
+  url: packages/leapyear-packages.yml
+- type: ErrorCatalog
+  url: errors/leapyear-error-codes.yml
+- type: Conventions
+  url: conventions/leapyear-conventions.yml
+- type: Lifecycle
+  url: lifecycle/leapyear-lifecycle.yml
+- type: DataModel
+  url: data-model/leapyear-data-model.yml
+- type: Conformance
+  url: conformance/leapyear-conformance.yml
+- type: DomainSecurity
+  url: security/leapyear-domain-security.yml
+- type: LLMsTxt
+  url: llms/leapyear-llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
