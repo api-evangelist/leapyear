@@ -1,0 +1,59 @@
+generated: '2026-07-19'
+method: searched
+source: https://www.snowflake.com/en/blog/snowflake-to-acquire-leapyear/
+notes: >-
+  LeapYear published no versioning policy, deprecation policy, SLA, or status page.
+  What is documented is the end of the standalone product: Snowflake acquired the
+  company and the LeapYear surface was retired.
+status: end-of-life
+versioning:
+  scheme: matched client/server release versions
+  current: 4.1.1
+  docs: https://leapyear-python-docs.readthedocs-hosted.com/en/4.1.1/
+  published_versions:
+  - 4.1.0
+  - 4.1.1
+  - latest
+  policy_url: null
+  note: >-
+    The client raises ServerVersionMismatch when its version differs from the deployed
+    LeapYear Core server, so upgrades are coordinated rather than negotiated per request.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No RFC 8594 Sunset/Deprecation header support or deprecation policy was published.
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+acquisition:
+  acquirer: Snowflake
+  announced: '2023-02-08'
+  closed: '2023-02-10'
+  consideration: USD 62.0 million in cash
+  rationale: >-
+    Snowflake acquired LeapYear's differential privacy technology and team to extend
+    the Data Cloud's data clean room and sensitive-data collaboration capabilities.
+  sources:
+  - https://www.snowflake.com/en/blog/snowflake-to-acquire-leapyear/
+  - https://www.sec.gov/Archives/edgar/data/1640147/000164014723000199/snow-20230731.htm
+surface_status:
+  probed: '2026-07-19'
+  hosts:
+  - host: leapyear.io
+    dns: 3.33.139.32
+    https: false
+    result: connection timed out
+  - host: www.leapyear.io
+    dns: 3.33.139.32
+    https: false
+    result: connection timed out
+  - host: docs.leapyear.io
+    dns: 3.33.139.32
+    https: false
+    result: connection timed out
+  - host: leapyear-python-docs.readthedocs-hosted.com
+    https: true
+    result: '200'
+    note: the only reachable public developer surface
+deprecated_operations: []

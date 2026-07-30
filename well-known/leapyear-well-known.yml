@@ -1,0 +1,26 @@
+generated: '2026-07-19'
+method: probed
+host: https://leapyear.io
+notes: >-
+  No .well-known documents could be harvested. leapyear.io, www.leapyear.io and
+  docs.leapyear.io all resolve to 3.33.139.32 but the host does not complete a TLS
+  connection, so every probe timed out (curl exit 28, recorded as status 000). This
+  is the expected result for a company whose surface was retired after the Snowflake
+  acquisition. No WellKnown or SecurityTxt pointer is wired into apis.yml because
+  nothing was found.
+documents:
+- path: /.well-known/security.txt
+  status: '000'
+  result: connection timed out
+- path: /.well-known/openid-configuration
+  status: '000'
+  result: connection timed out
+- path: /.well-known/oauth-authorization-server
+  status: '000'
+  result: connection timed out
+- path: /.well-known/api-catalog
+  status: '000'
+  result: connection timed out
+- path: /.well-known/ai-plugin.json
+  status: '000'
+  result: connection timed out

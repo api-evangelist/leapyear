@@ -1,0 +1,100 @@
+generated: '2026-07-19'
+method: searched
+source: https://leapyear-python-docs.readthedocs-hosted.com/en/4.1.1/api/exceptions.html
+docs: https://leapyear-python-docs.readthedocs-hosted.com/en/4.1.1/api/exceptions.html
+format: python-exceptions
+notes: >-
+  LeapYear published no RFC 9457 problem types, so the error contract is the exception
+  hierarchy of the first-party Python client. Errors from the server arrive as APIError
+  built from the HTTP response and carry ErrorInfo entries (message plus optional
+  details). The privacy exceptions are the distinctive class: they interrupt a
+  computation when answering it would exceed the configured Privacy Exposure budget,
+  and the documentation notes the precise reason is deliberately withheld because the
+  reason itself could leak information. Descriptions below are summarized, not
+  reproduced, from the vendor reference.
+envelope:
+  transport: http
+  client_class: leapyear.exceptions.APIError
+  constructor: ClientError.from_response(response, errors)
+  fields:
+  - name: message
+    description: Human-readable error message
+  - name: details
+    description: Optional additional detail, carried on ErrorInfo
+errors:
+- name: ClientError
+  category: client
+  meaning: Base class for general client-side errors.
+- name: APIError
+  category: server
+  meaning: Error returned by the LeapYear API server, built from the HTTP response.
+- name: ErrorInfo
+  category: envelope
+  meaning: Structure describing a single error, with message and optional details.
+- name: DataSetTooSmallException
+  category: privacy
+  meaning: >-
+    The system cannot meet the target accuracy without exceeding the maximum Privacy
+    Exposure allowed for the computation, typically because the sample is too small.
+  action: Widen the query population or relax the target accuracy.
+- name: DataSetSizeBlockedByPrivacyProfileException
+  category: privacy
+  meaning: >-
+    The dataset is smaller than the minimum size the governing privacy profile requires.
+  action: Query a larger population or have an administrator adjust the privacy profile.
+- name: HighPrivacyExposureException
+  category: privacy
+  meaning: >-
+    The estimated Privacy Exposure would reach or exceed the Privacy Exposure Limit for
+    the computation. The precise cause is intentionally not disclosed.
+  action: Reduce query sensitivity, widen the sample, or request additional budget.
+- name: SensitivityMultiplierTooLargeException
+  category: privacy
+  meaning: >-
+    The computation both approaches the maximum Privacy Exposure and rests on a derived
+    dataset producing an excessively large sensitivity multiplier.
+  action: Simplify the derivation chain feeding the computation.
+- name: InvalidURL
+  category: client
+  meaning: The supplied server URL could not be parsed.
+- name: TLSError
+  category: transport
+  meaning: TLS negotiation or validation failure.
+- name: InvalidJson
+  category: transport
+  meaning: Malformed JSON payload.
+- name: ConnectionError
+  category: transport
+  meaning: The client could not establish a connection to the server.
+- name: ServerVersionMismatch
+  category: compatibility
+  meaning: The client and LeapYear Core server are running different versions.
+  action: Align the client library version with the deployed server version.
+- name: TokenExpiredError
+  category: authentication
+  meaning: The authentication token has expired.
+  action: Re-authenticate and reopen the client connection.
+- name: PublicKeyCredentialsError
+  category: authentication
+  meaning: A problem with the public key authentication credentials.
+- name: AsyncTimeoutError
+  category: jobs
+  meaning: An asynchronous job exceeded its timeout.
+- name: AsyncCancelledError
+  category: jobs
+  meaning: An asynchronous job was cancelled.
+- name: GroupbyAggTooManyKeysError
+  category: query
+  meaning: A GroupbyAgg operation was issued with too many grouping keys.
+- name: LoadUnsupportedModelException
+  category: model
+  meaning: Attempted to load or save an unsupported model type.
+- name: LoadModelMismatchException
+  category: model
+  meaning: The loaded model type did not match the expected type.
+- name: SaveUnsupportedModelException
+  category: model
+  meaning: Attempted to save an unsupported model type.
+- name: LoadModelVersionException
+  category: model
+  meaning: Attempted to load a model whose version is not supported.

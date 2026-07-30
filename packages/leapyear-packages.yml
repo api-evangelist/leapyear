@@ -1,0 +1,51 @@
+generated: '2026-07-19'
+method: searched
+source: https://leapyear-python-docs.readthedocs-hosted.com/en/4.1.1/
+notes: >-
+  LeapYear shipped one first-party client library, the leapyear Python package, but
+  never distributed it through a public registry. PyPI has no leapyear or
+  leapyear-client project (404 on both, probed 2026-07-19) and the npm name leapyear
+  was unpublished in 2023 by an unrelated author. The package was delivered to
+  licensed customers alongside the self-hosted LeapYear Core server; only its
+  reference documentation remains public.
+packages:
+- language: python
+  registry: private
+  name: leapyear
+  version: 4.1.1
+  url: https://leapyear-python-docs.readthedocs-hosted.com/en/4.1.1/
+  install: null
+  official: true
+  distribution: licensed-customers-only
+  modules:
+  - leapyear
+  - leapyear.admin
+  - leapyear.admin.grants
+  - leapyear.jobs
+  - leapyear.dataset
+  - leapyear.functions
+  - leapyear.feature
+  - leapyear.analytics
+  - leapyear.analytics.classes
+  - leapyear.model
+  - leapyear.exceptions
+  - leapyear.ext
+registry_probes:
+- registry: pypi
+  name: leapyear
+  url: https://pypi.org/pypi/leapyear/json
+  status: 404
+- registry: pypi
+  name: leapyear-client
+  url: https://pypi.org/pypi/leapyear-client/json
+  status: 404
+- registry: npm
+  name: leapyear
+  url: https://registry.npmjs.org/leapyear
+  status: 200
+  official: false
+  note: unpublished 2023-04-26, unrelated third-party package
+- registry: github
+  name: leapyear org
+  url: https://api.github.com/orgs/leapyear
+  status: 404

@@ -1,0 +1,44 @@
+# LeapYear
+
+> LeapYear Technologies built an enterprise platform for differentially private analytics and machine learning. Organizations pointed it at their most sensitive data and ran statistics, SQL-style queries, feature engineering, and model training while a mathematically provable privacy guarantee bounded what any single record could leak. The product shipped as a self-hosted server, LeapYear Core, driven by a first-party Python client. Snowflake acquired LeapYear in February 2023 for $62.0 million in cash and folded the technology into the Data Cloud's clean-room capabilities. The standalone surface is retired.
+
+Status: acquired by Snowflake, 2023-02-10. leapyear.io no longer answers on HTTPS. The only reachable public developer surface is the hosted Python client reference for version 4.1.1.
+
+## APIs
+
+- [LeapYear Python Client](https://leapyear-python-docs.readthedocs-hosted.com/en/4.1.1/): First-party Python library for LeapYear Core. Self-hosted only — there is no public multi-tenant endpoint. The client is pointed at a customer-operated server via the `url` argument or the `LY_API_URL` environment variable.
+
+## Docs
+
+- [Documentation home](https://leapyear-python-docs.readthedocs-hosted.com/en/4.1.1/): Getting Started, Data Analysis, Management and Administration, API reference.
+- [API reference](https://leapyear-python-docs.readthedocs-hosted.com/en/4.1.1/api.html): All modules.
+- [Tutorial](https://leapyear-python-docs.readthedocs-hosted.com/en/4.1.1/tutorial.html): Connecting to LeapYear and exploring data.
+- [Module leapyear](https://leapyear-python-docs.readthedocs-hosted.com/en/4.1.1/api/leapyear.html): The Client class, connecting, creating users, databases and tables.
+- [Module leapyear.admin](https://leapyear-python-docs.readthedocs-hosted.com/en/4.1.1/api/admin.html): Database, Table, ColumnDefinition, TableColumn, View, User, Privacy Profile, Permissions.
+- [Module leapyear.admin.grants](https://leapyear-python-docs.readthedocs-hosted.com/en/4.1.1/api/admin_grants.html): Access grants.
+- [Module leapyear.dataset](https://leapyear-python-docs.readthedocs-hosted.com/en/4.1.1/api/dataset.html): The DataSet query builder.
+- [Module leapyear.jobs](https://leapyear-python-docs.readthedocs-hosted.com/en/4.1.1/api/async.html): Asynchronous job status.
+- [Module leapyear.analytics](https://leapyear-python-docs.readthedocs-hosted.com/en/4.1.1/api/analytics.html): Differentially private statistics and learning.
+- [Module leapyear.model](https://leapyear-python-docs.readthedocs-hosted.com/en/4.1.1/api/model.html): Trained models, import and export.
+- [Module leapyear.feature](https://leapyear-python-docs.readthedocs-hosted.com/en/4.1.1/api/feature.html): Scalers, encoders, transformers.
+- [Module leapyear.functions](https://leapyear-python-docs.readthedocs-hosted.com/en/4.1.1/api/functions.html): Datetime, math, string and window functions.
+- [Module leapyear.exceptions](https://leapyear-python-docs.readthedocs-hosted.com/en/4.1.1/api/exceptions.html): The full error surface, including the privacy-budget exceptions.
+- [Module leapyear.ext](https://leapyear-python-docs.readthedocs-hosted.com/en/4.1.1/api/ext.html): Simplified client initialization.
+
+## Artifacts
+
+- [Authentication profile](authentication/leapyear-authentication.yml): Username/password login, public key auth, pluggable authenticate callback, token expiry.
+- [Packages](packages/leapyear-packages.yml): The one first-party Python client, never published to a public registry.
+- [Error catalog](errors/leapyear-error-codes.yml): Exception hierarchy including the privacy safeguards that block a computation.
+- [Conventions](conventions/leapyear-conventions.yml): Connection, caching, async jobs, and the Privacy Exposure budget that acts as the platform quota.
+- [Data model](data-model/leapyear-data-model.yml): Database, Table, View, User, Group, Permission, PrivacyProfile, DataSet, Job, Model.
+- [Lifecycle](lifecycle/leapyear-lifecycle.yml): Versioning, end-of-life, and the Snowflake acquisition.
+- [Conformance](conformance/leapyear-conformance.yml): Standards evidenced and not evidenced.
+- [Domain security](security/leapyear-domain-security.yml): TLS, HSTS, DNSSEC, CAA, SPF, DMARC probe results.
+- [Well-known probe](well-known/leapyear-well-known.yml): No discovery documents reachable.
+
+## Notes for agents
+
+- There is no OpenAPI, AsyncAPI, GraphQL, gRPC, MCP server, CLI, sandbox, changelog, status page, or public package for LeapYear. None were ever published, and the company surface is now retired. Do not synthesize them.
+- Privacy budget, not request volume, is the metered resource. A computation can be refused outright when its estimated Privacy Exposure would breach the configured limit, and the reason is deliberately withheld because the reason itself could leak information.
+- For current differential privacy capability, look to Snowflake, which acquired this technology.

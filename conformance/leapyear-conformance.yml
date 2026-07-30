@@ -1,0 +1,41 @@
+generated: '2026-07-19'
+method: derived
+source: https://leapyear-python-docs.readthedocs-hosted.com/en/4.1.1/
+notes: >-
+  LeapYear published no compliance program, certification list, or trust center that
+  is still reachable, so no Compliance pointer is emitted. These entries record what
+  the surviving public reference does and does not evidence.
+standards:
+- id: differential-privacy
+  conforms: true
+  evidence: >-
+    The platform is built around a Privacy Exposure budget, per-database privacy
+    profiles and limits, and computation-blocking safeguards documented in
+    leapyear.exceptions and leapyear.admin.
+- id: oauth2
+  conforms: false
+  evidence: Client authenticates with username/password or public key, no OAuth flows documented.
+- id: oidc
+  conforms: false
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors are surfaced as Python exceptions with message/details, not problem+json.
+- id: rfc8594-sunset-header
+  conforms: false
+- id: openapi
+  conforms: false
+  evidence: No OpenAPI or Swagger description was ever published.
+- id: asyncapi
+  conforms: false
+- id: json-api
+  conforms: false
+- id: scim
+  conforms: false
+- id: odata
+  conforms: false
+- id: fhir
+  conforms: false
+- id: fapi
+  conforms: false
+- id: psd2
+  conforms: false

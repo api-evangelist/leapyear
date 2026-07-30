@@ -1,0 +1,42 @@
+generated: '2026-07-19'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+notes: >-
+  The readthedocs-hosted docs host is the only reachable LeapYear developer surface;
+  its posture is the hosting provider's, not LeapYear's. The corporate domain
+  leapyear.io still resolves and is still held on MarkMonitor nameservers after the
+  Snowflake acquisition, but it serves nothing and publishes no CAA, SPF or DMARC.
+hosts:
+- host: leapyear.io
+  https: false
+  result: connection timed out after 8s
+  a_record: 3.33.139.32
+  tls_version: null
+  hsts: null
+- host: www.leapyear.io
+  https: false
+  result: connection timed out after 8s
+  a_record: 3.33.139.32
+- host: docs.leapyear.io
+  https: false
+  result: connection timed out after 8s
+  a_record: 3.33.139.32
+- host: leapyear-python-docs.readthedocs-hosted.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 21 18:43:48 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+domains:
+- domain: leapyear.io
+  dnssec: false
+  caa: []
+  spf: false
+  dmarc: false
+  dmarc_policy: null
+  nameservers: markmonitor.com
+- domain: readthedocs-hosted.com
+  dnssec: false
+  caa: []
+  spf: false
+  dmarc: false

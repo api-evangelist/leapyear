@@ -1,0 +1,112 @@
+generated: '2026-07-19'
+method: derived
+source: https://leapyear-python-docs.readthedocs-hosted.com/en/4.1.1/api/admin.html
+notes: >-
+  Derived from the LeapYear Python client class reference (leapyear.admin,
+  leapyear.dataset, leapyear.jobs, leapyear.model) rather than from an OpenAPI
+  document, which LeapYear never published. Relationships come from documented
+  properties and constructor arguments.
+entities:
+- name: Database
+  module: leapyear.admin
+  description: Top-level container holding tables and views, governed by a privacy profile and privacy limit.
+  key: db_id
+  relationships:
+  - kind: has_many
+    target: Table
+    via: tables
+  - kind: has_many
+    target: View
+    via: views
+  - kind: has_one
+    target: PrivacyProfile
+    via: privacy_profile
+  - kind: has_one
+    target: PrivacyLimit
+    via: privacy_limit
+- name: Table
+  module: leapyear.admin
+  description: A registered dataset backed by external storage credentials, defined by column definitions.
+  relationships:
+  - kind: belongs_to
+    target: Database
+    via: database
+  - kind: has_many
+    target: ColumnDefinition
+    via: columns
+  - kind: has_many
+    target: TableColumn
+    via: columns
+- name: ColumnDefinition
+  module: leapyear.admin
+  description: Declared column with a type and, for numeric columns, the bounds used to bound sensitivity.
+- name: TableColumn
+  module: leapyear.admin
+  description: A column as materialized on a table.
+  relationships:
+  - kind: belongs_to
+    target: Table
+    via: table
+- name: View
+  module: leapyear.admin
+  description: Derived, admin-visible projection over tables.
+  relationships:
+  - kind: belongs_to
+    target: Database
+    via: database
+- name: User
+  module: leapyear.admin
+  description: An authenticated principal on the LeapYear server.
+  relationships:
+  - kind: has_many
+    target: Permission
+    via: grants
+- name: Group
+  module: leapyear.admin
+  description: A collection of users used as a grant subject.
+  relationships:
+  - kind: has_many
+    target: User
+    via: members
+- name: Permission
+  module: leapyear.admin.grants
+  description: An access grant binding a subject (User or Group) to a resource at an access level.
+  relationships:
+  - kind: belongs_to
+    target: User
+    via: subject
+  - kind: belongs_to
+    target: Group
+    via: subject
+  - kind: belongs_to
+    target: Database
+    via: resource
+- name: PrivacyProfile
+  module: leapyear.admin
+  description: Named policy setting the privacy parameters and minimum dataset size applied to a database.
+  relationships:
+  - kind: has_many
+    target: Database
+    via: privacy_profile
+- name: DataSet
+  module: leapyear.dataset
+  description: Query builder over tables and views supporting attributes, aliases, grouping and windowing.
+  relationships:
+  - kind: belongs_to
+    target: Table
+    via: source
+- name: Job
+  module: leapyear.jobs
+  description: Asynchronous unit of work whose status can be polled.
+  relationships:
+  - kind: belongs_to
+    target: DataSet
+    via: analysis
+- name: Model
+  module: leapyear.model
+  description: Trained supervised, unsupervised, regression, tree or clustering model, importable and exportable.
+  relationships:
+  - kind: belongs_to
+    target: DataSet
+    via: training_data
+render: null

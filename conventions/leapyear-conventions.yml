@@ -1,0 +1,77 @@
+generated: '2026-07-19'
+method: searched
+source: https://leapyear-python-docs.readthedocs-hosted.com/en/4.1.1/
+docs: https://leapyear-python-docs.readthedocs-hosted.com/en/4.1.1/api.html
+notes: >-
+  LeapYear exposed its platform through a first-party Python client against a
+  self-hosted server rather than a documented public HTTP contract, so these
+  conventions describe the client-library surface. Idempotency, pagination, and
+  request-id tracing are not documented anywhere in the public reference; those
+  fields are recorded as unknown rather than assumed.
+interface:
+  style: client-library
+  language: python
+  transport: http over tls
+  server: LeapYear Core (self-hosted)
+  entrypoint: leapyear.Client
+authentication:
+  style: username/password login or public key auth, yielding a server-issued token
+  see: authentication/leapyear-authentication.yml
+connection:
+  url_argument: url
+  env_var: LY_API_URL
+  default: http://localhost:4401
+  lifecycle: explicit Client.close() or the Client context manager
+  caching: >-
+    Resource metadata is cached client-side to reduce network latency; load() on a
+    resource forces a metadata refresh.
+  client_flags:
+  - default_analysis_caching
+  - default_allow_max_budget_allocation
+idempotency:
+  supported: unknown
+  note: No idempotency key or retry-safety contract appears in the public reference.
+pagination:
+  supported: unknown
+  note: >-
+    Collections are exposed as Python mappings and iterators (Database.all(),
+    Database.tables, Database.views); no cursor or page-token contract is documented.
+async:
+  supported: true
+  module: leapyear.jobs
+  model: >-
+    Long-running analyses are submitted as asynchronous jobs whose status can be
+    inspected; timeouts and cancellations surface as AsyncTimeoutError and
+    AsyncCancelledError.
+  see: errors/leapyear-error-codes.yml
+privacy_budget:
+  concept: Privacy Exposure
+  controls:
+  - Privacy Profile assigned per database
+  - Privacy Limit set per database
+  - Per-computation maximum Privacy Exposure
+  enforcement: >-
+    Requests are refused before results are returned when the estimated exposure would
+    breach the configured limit. This is the platform's defining runtime semantic and
+    functions as its rate-limiting analogue: the scarce resource metered is privacy
+    budget, not request volume.
+  opacity: >-
+    The reason a computation was blocked is deliberately not made explicit, because the
+    reason could itself leak information about the underlying data.
+error_envelope:
+  style: python exceptions
+  server_errors: leapyear.exceptions.APIError constructed from the HTTP response
+  fields:
+  - message
+  - details
+  see: errors/leapyear-error-codes.yml
+versioning:
+  scheme: client and server versions must match
+  mismatch_error: ServerVersionMismatch
+  documented_versions:
+  - 4.1.0
+  - 4.1.1
+  see: lifecycle/leapyear-lifecycle.yml
+rate_limits:
+  supported: unknown
+  note: No request rate limit is documented; privacy budget is the enforced quota.
