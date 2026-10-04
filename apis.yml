@@ -50,9 +50,9 @@ created: '2026-07-17'
 modified: '2026-09-16'
 tags:
 - Company
-- Data Privacy
+- Privacy
 - Differential Privacy
-- Machine-Learning
+- Machine Learning
 - Analytics
 - Data Clean Rooms
 - Privacy Enhancing Technologies
@@ -68,6 +68,7 @@ tags_raw:
 - Privacy Enhancing Technologies
 - Python
 - Acquired
+- Machine-Learning
 apis:
 - aid: leapyear:leapyear-python-client
   name: LeapYear Python Client
@@ -81,7 +82,7 @@ apis:
   humanURL: https://leapyear-python-docs.readthedocs-hosted.com/en/4.1.1/
   tags:
   - Differential Privacy
-  - Machine-Learning
+  - Machine Learning
   - Analytics
   - Python
   tags_raw:
@@ -89,6 +90,7 @@ apis:
   - Machine Learning
   - Analytics
   - Python
+  - Machine-Learning
   properties:
   - type: Documentation
     url: https://leapyear-python-docs.readthedocs-hosted.com/en/4.1.1/
